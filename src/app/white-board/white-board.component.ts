@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-white-board',
@@ -28,6 +29,11 @@ export class WhiteBoardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  drop(event: CdkDragDrop<any[]>) {
+    console.log(event);
+    moveItemInArray(this.ideas, event.previousIndex, event.currentIndex);
   }
 
 }
