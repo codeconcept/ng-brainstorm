@@ -1,7 +1,25 @@
 <div >
   <h2>Idées</h2>
-  <div cdkDropList (cdkDropListDropped)="drop($event)">
+  <div cdkDropList 
+    class="ideas"
+    [cdkDropListData]="ideas" 
+    (cdkDropListDropped)="drop($event)"
+    [cdkDropListConnectedTo]="[listOfTodayIdeas]"
+    #listOfIdeas="cdkDropList"
+    >
     <div class="example-box" cdkDrag *ngFor="let idea of ideas">
+      {{ idea.title }}
+    </div>
+  </div>
+
+  <div cdkDropList 
+    class="today" 
+    [cdkDropListData]="todayIdeas" 
+    (cdkDropListDropped)="drop($event)"
+    [cdkDropListConnectedTo]="[listOfIdeas]"
+    #listOfTodayIdeas="cdkDropList"
+    >
+    <div class="example-box" cdkDrag *ngFor="let idea of todayIdeas">
       {{ idea.title }}
     </div>
   </div>

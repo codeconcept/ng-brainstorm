@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-white-board',
@@ -24,7 +24,9 @@ export class WhiteBoardComponent implements OnInit {
       title: 'Impôts locaux',
       details: 'Quel montant réel'
     },
-  ]
+  ];
+
+  todayIdeas = [];
 
   constructor() { }
 
@@ -32,8 +34,14 @@ export class WhiteBoardComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<any[]>) {
-    console.log(event);
-    moveItemInArray(this.ideas, event.previousIndex, event.currentIndex);
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);
+    }
   }
 
 }
