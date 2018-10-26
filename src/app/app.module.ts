@@ -7,6 +7,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
+
 import { HomeComponent } from './home/home.component';
 import { WhiteBoardComponent } from './white-board/white-board.component';
 import { IdeaFormComponent } from './idea-form/idea-form.component';
@@ -23,7 +27,9 @@ import { IdeaFormComponent } from './idea-form/idea-form.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     DragDropModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

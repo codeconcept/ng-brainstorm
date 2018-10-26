@@ -1,5 +1,5 @@
 export interface Idea {
-  id: number;
+  id?: number;
   title: string;
   details: string;
   creationDate?: string;
