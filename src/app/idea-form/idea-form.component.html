@@ -1,0 +1,7 @@
+<div>
+  <form (ngSubmit)="createIdea()" [formGroup]="ideaForm">
+    <input type="text" formControlName="title" placeholder="titre"><br>
+    <textarea formControlName="details" placeholder="détails"></textarea><br>
+    <button type="submit" [disabled]="!ideaForm.valid">créer</button> {{ errorMessage }}
+  </form>
+</div>
