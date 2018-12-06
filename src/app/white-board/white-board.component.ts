@@ -42,4 +42,10 @@ export class WhiteBoardComponent implements OnInit, OnDestroy {
     }
   }
 
+  delete(id) {
+    this.ideaService.delete(id)
+      .then(value => console.log('delete OK', value))
+      .catch(err => console.error(err))
+  }
+
 }

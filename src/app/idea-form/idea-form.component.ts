@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { Idea } from './../models/idea';
-import { ReturnStatement } from '@angular/compiler';
+import { IdeaService } from './../services/idea.service';
 
 @Component({
   selector: 'app-idea-form',
@@ -13,11 +13,10 @@ export class IdeaFormComponent implements OnInit {
   ideaForm: FormGroup;
   errorMessage = '';
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private ideaService: IdeaService) { }
 
   ngOnInit() {
     this.ideaForm = this.fb.group({
-      id: Date.now(),
       title: ['', Validators.required],
       details: ['', Validators.required]
     });
@@ -29,6 +28,10 @@ export class IdeaFormComponent implements OnInit {
       return;
     }
     console.log(this.ideaForm.value);
+    this.ideaService
+      .create(this.ideaForm.value)
+      .then(value => console.log('value', value))
+      .catch(err => console.error('error', err));
     this.ideaForm.reset();
     this.errorMessage = '';
   }

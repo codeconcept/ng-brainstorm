@@ -11,7 +11,7 @@
     #listOfIdeas="cdkDropList"
     >
     <div class="example-box" cdkDrag *ngFor="let idea of ideas">
-      {{ idea.title }}
+      {{ idea.title }} <button (click)="delete(idea.id)"> x</button>
     </div>
   </div>
 

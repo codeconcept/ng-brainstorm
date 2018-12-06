@@ -29,4 +29,13 @@ export class IdeaService {
         })
       );
   }
+
+  create(idea) {
+      return this.ideaCollectionRef
+        .add(idea);
+  }
+
+  delete(id) {
+    return this.ideaCollectionRef.doc(id).delete();
+  }
 }
